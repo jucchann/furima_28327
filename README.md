@@ -16,6 +16,8 @@
 | birthday         | date   | null: false               |
 
 ### Association
+- has_many :items
+- has_many :purchases
 - has_many :comments
 
 ## items テーブル
@@ -25,25 +27,29 @@
 | image         | text       | null: false                    |
 | name          | string     | null: false                    |
 | description   | text       | null: false                    |
-| category      | string     | null: false                    |
 | price         | integer    | null: false                    |
 
 ### Association
 - has_many :comments
+- has_one :purchase
 - has_one :delivery_address
 - belongs_to :user
+- belongs_to_active_hash :category
+- belongs_to_active_hash :condition
+- belongs_to_active_hash :delivery_fee
+- belongs_to_active_hash :delivery_from
+- belongs_to_active_hash :delivery_days
 
 ## purchases テーブル
 
 | Column    | Type       | Options                        |
 | --------- | ---------- | ------------------------------ |
-| buyer_id  | references | null: false, foreign_key: true |
-| seller_id | references | null: false, foreign_key: true |
+| user_ id  | references | null: false, foreign_key: true |
 | item_id   | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
-- has_one :item
+- belongs_to :item
 
 ## delivery_address テーブル
 
@@ -57,7 +63,7 @@
 | phone_number  | string  | null: false               |
 
 ### Association
-- has_one :item
+- belongs_to :item
 
 ## comments テーブル
 
