@@ -7,13 +7,15 @@ class User < ApplicationRecord
   with_options presence: true do
     validates :nickname
     validates :birthday
-
-    # 名前に関するバリデーション
-    validates :family_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: 'は全角で入力してください。' }
-    validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: 'は全角で入力してください。' }
-    validates :family_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: 'は全角カタカナで入力して下さい。' }
-    validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: 'は全角カタカナで入力して下さい。' }
   end
+
+  NAME_REGEX = /\A[ぁ-んァ-ン一-龥]/.freeze
+  validates_format_of :family_name, :first_name, with: NAME_REGEX, presence: true,
+                                                 message: 'は全角で入力してください。'
+
+  NAME_KANA_REGEX = /\A[ァ-ヶー－]+\z/.freeze
+  validates_format_of :family_name_kana, :first_name_kana, with: NAME_KANA_REGEX, presence: true,
+                                                           message: 'は全角カタカナで入力して下さい。'
 
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
   validates_format_of :password, with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください'
