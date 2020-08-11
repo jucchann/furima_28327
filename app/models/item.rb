@@ -10,7 +10,7 @@ class Item < ApplicationRecord
     validates :price
   end
 
-  validates :price, numericality: { only_integer: true, greater_than: 300, less_than: 9999999}
+  validates :price, numericality: { only_integer: true, greater_than: 300, less_than: 9_999_999 }
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category
@@ -19,7 +19,8 @@ class Item < ApplicationRecord
   belongs_to_active_hash :delivery_from
   belongs_to_active_hash :delivery_days
 
-  validates :image, :name, :description, :price, :category, :condition, :delivery_fee, :delivery_from, :delivery_days, presence: true
+  validates :image, :name, :description, :price, :category, :condition, :delivery_fee,
+            :delivery_from, :delivery_days, presence: true
 
   with_options numericality: { other_than: 1 } do
     validates :category_id, :condition_id, :delivery_fee_id, :delivery_from_id, :delivery_days_id
