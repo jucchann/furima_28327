@@ -24,10 +24,10 @@
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| image         | text       | null: false                    |
 | name          | string     | null: false                    |
 | description   | text       | null: false                    |
 | price         | integer    | null: false                    |
+| user_id       | references | null: false, foreign_key: true |
 
 ### Association
 - has_many :comments
