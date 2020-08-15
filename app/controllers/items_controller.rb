@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_sign_in, except: [:index, :show, :edit, :update]
-  before_action :set_item, only: [:show, :edit, :update, :purchase]
+  before_action :set_item, only: [:show, :edit, :update]
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -35,9 +35,6 @@ class ItemsController < ApplicationController
     else
       render :show
     end
-  end
-
-  def purchase
   end
 
   private
