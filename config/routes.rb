@@ -4,10 +4,6 @@ Rails.application.routes.draw do
 
   resources :users, only: :index
   resources :items do
-    member do
-      get :purchase
-    end
+    resources :purchases, only: [:index, :create]
   end
-
-
 end
