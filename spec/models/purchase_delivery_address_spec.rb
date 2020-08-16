@@ -27,7 +27,13 @@ RSpec.describe PurchaseDeliveryAddress, type: :model do
       it 'post_codeが空だと保存できないこと' do
         @purchase_delivery_address.post_code = nil
         @purchase_delivery_address.valid?
-        expect(@purchase_delivery_address.errors.full_messages).to include("Post code can't be blank", "Post code is invalid. Include hyphen(-)")
+        expect(@purchase_delivery_address.errors.full_messages).to include("Post code can't be blank")
+      end
+
+      it 'post_codeにハイフンがなければ保存できないこと' do
+        @purchase_delivery_address.post_code = '1111111'
+        @purchase_delivery_address.valid?
+        expect(@purchase_delivery_address.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
       end
 
       it 'prefecture_idが空だと保存できないこと' do
@@ -52,6 +58,12 @@ RSpec.describe PurchaseDeliveryAddress, type: :model do
         @purchase_delivery_address.phone_number = nil
         @purchase_delivery_address.valid?
         expect(@purchase_delivery_address.errors.full_messages).to include("Phone number can't be blank")
+      end
+
+      it 'phone_numberが12桁以上だと保存できないこと' do
+        @purchase_delivery_address.phone_number = '000000000000'
+        @purchase_delivery_address.valid?
+        expect(@purchase_delivery_address.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
       end
     end
   end
