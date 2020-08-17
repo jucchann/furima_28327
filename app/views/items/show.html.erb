@@ -29,7 +29,7 @@
     <%= link_to '削除', item_path, method: :delete, class:'item-destroy' %>
     <% end %>
 
-    <% if @item.present? && !(current_user.id == @item.user_id) %>
+    <% if @item.purchase.nil? && !(current_user == @item.user) %>
     <%= link_to '購入画面に進む', item_purchases_path(@item.id), class:"item-red-btn"%>
     <% end %>
 
