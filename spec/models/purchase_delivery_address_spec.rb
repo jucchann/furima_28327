@@ -7,7 +7,6 @@ RSpec.describe PurchaseDeliveryAddress, type: :model do
       @buyer = FactoryBot.create(:user)
       @item = FactoryBot.build(:item)
       @purchase_delivery_address = FactoryBot.build(:purchase_delivery_address, user_id: @buyer.id, item_id: @item.id)
-
     end
 
     context '商品購入情報の保存ができるとき' do
