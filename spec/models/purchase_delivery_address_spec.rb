@@ -3,7 +3,11 @@ require 'rails_helper'
 RSpec.describe PurchaseDeliveryAddress, type: :model do
   describe '商品購入情報の保存' do
     before do
-      @purchase_delivery_address = FactoryBot.build(:purchase_delivery_address)
+      @seller = FactoryBot.create(:user)
+      @buyer = FactoryBot.create(:user)
+      @item = FactoryBot.build(:item)
+      @purchase_delivery_address = FactoryBot.build(:purchase_delivery_address, user_id: @buyer.id, item_id: @item.id)
+
     end
 
     context '商品購入情報の保存ができるとき' do
