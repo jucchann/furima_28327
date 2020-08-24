@@ -37,6 +37,11 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+    @comment = Comment.new
+    @comments = @item.comments.includes(:user)
+  end
+
   private
 
   def item_params
