@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_sign_in, except: [:index, :show, :edit, :update]
+  before_action :move_to_sign_in, except: [:index, :show, :edit, :update, :search]
   before_action :set_item, only: [:show, :edit, :update]
 
   def index
@@ -40,6 +40,10 @@ class ItemsController < ApplicationController
   def show
     @comment = Comment.new
     @comments = @item.comments.includes(:user)
+  end
+
+  def search
+    @items = Item.search(params[:keyword])
   end
 
   private

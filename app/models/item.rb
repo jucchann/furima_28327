@@ -28,4 +28,12 @@ class Item < ApplicationRecord
   with_options numericality: { other_than: 1 } do
     validates :category_id, :condition_id, :delivery_fee_id, :delivery_from_id, :delivery_days_id
   end
+
+  def self.search(search)
+    if search != ""
+      Item.where('name LIKE(?)', "%#{search}%")
+    else
+      Item.all
+    end
+  end
 end
