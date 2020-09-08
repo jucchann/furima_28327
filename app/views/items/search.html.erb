@@ -3,9 +3,15 @@
 <div class="contents row">
     <ul class='item-lists'>
       <li class='list'>
-  <% @items.each do |item| %>
-  <%= link_to item_path(item.id) do %>
-    <div class='item-img-content'>
+        <% if @items.empty? %>
+          <div class="no-item">
+            <%= "該当するアイテムはありません" %>
+          </div>
+        <% end %>
+
+      <% @items.each do |item| %>
+      <%= link_to item_path(item.id) do %>
+      <div class='item-img-content'>
       <%= image_tag item.image, class: "item-img" %>
         <% if item.purchase.present? %>
           <div class='sold-out'>
