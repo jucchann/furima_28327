@@ -65,7 +65,7 @@ gem 'devise'
 gem 'pry-rails'
 gem 'active_hash'
 gem 'mini_magick'
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.12'
 gem 'payjp'
 gem "aws-sdk-s3", require: false
 gem 'rails-i18n'
